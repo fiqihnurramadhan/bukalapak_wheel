@@ -15,10 +15,10 @@ var retrieveGifts = function(req,res){
 		priceRangeChecking = 3
 	}
 
-	var sql = "SELECT * FROM Gift Where price_range = ?";
+	var sql = "SELECT * FROM Gift Where price_range = ? OR price_range = 0";
 	service.query(sql, [priceRangeChecking], function (err, result, field) {
 	    if (err) {
-	    	res.json({status:400,message:'Failed'});
+	    	res.json({status:400,message:'Failed', error: err});
 	    } else {
 	    	res.json({status:200,message:'Get data success',data:result});
 	    }
