@@ -15,5 +15,6 @@ app.listen(portServer, function () {
 })
 
 // setup routes API
-var giftRouter = require("./Routes/giftRouter")
-//app.use('/gift',giftRouter)
+//var daganganRouter	=	require('./routes/daganganRouter.js');
+var giftRouter = require("./Routes/giftRouter.js")
+app.use('/gift',giftRouter)
