@@ -1,5 +1,5 @@
 var express=require('express');
-var giftController=require('./../controllers/giftController');
+var giftController=require('./../Controllers/giftController');
  
 var giftRouter=express.Router();
 
