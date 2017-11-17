@@ -15,6 +15,8 @@ app.listen(portServer, function () {
 })
 
 // setup routes API
-//var daganganRouter	=	require('./routes/daganganRouter.js');
+app.get('/', function (req, res) {
+    res.send('<b>Bukalapak Wheel</b>');
+});
 var giftRouter = require("./Routes/giftRouter.js")
 app.use('/gift',giftRouter)
