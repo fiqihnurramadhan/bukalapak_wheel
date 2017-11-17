@@ -6,7 +6,7 @@ var retrieveInventories = function(req,res){
   var userId = req.params.id
   console.log("Starting retrieve inventory with userId: "+ userId);
   var creds = [userId]
-  var sql = "SELECT * FROM Gift_Inventory WHERE user_id = ?";
+  var sql = "SELECT * FROM Gift g, Gift_Inventory i WHERE user_id = ? AND g.id = i.gift_id";
   service.query(sql, creds, function (err, result, field) {
     if (err) {
     	res.json({status:400,message:'Failed'});
