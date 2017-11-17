@@ -1,8 +1,9 @@
 var express 	=	require("express");
 var app			=	express();
 var bodyParser	=	require('body-parser');
+var morgan 		= 	require('morgan')
 // setup web services
-
+app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
@@ -27,4 +28,7 @@ app.get('/', function (req, res) {
     res.send('<b>Bukalapak Wheel</b>');
 });
 var giftRouter = require("./Routes/giftRouter.js")
-app.use('/gift',giftRouter)
+app.use(giftRouter)
+
+var inventoryRouter = require("./Routes/inventoryRouter.js")
+app.use(inventoryRouter)
