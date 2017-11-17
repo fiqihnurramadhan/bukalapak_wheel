@@ -1,19 +1,19 @@
-var express =	require("express");
-var app		=	express();
-var mysql	=	require("mysql");
+var express 	=	require("express");
+var app			=	express();
+var bodyParser	=	require('body-parser');
+// setup web services
 
-var setupConnection	= require("./setupConnection");
-var con = mysql.createConnection(setupConnection.setCon);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+})
+var portServer = 5000;
+app.listen(portServer, function () {
+    console.log('Start server on port:' + portServer)
+})
 
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-//   var tableName = 'K%'
-//   var sql = "SELECT * FROM customers WHERE address LIKE ?";
-//   con.query(sql,[tableName], function (err, result, field) {
-//     if (err) throw err;
-//     console.log(result);
-//   });
-// });
-
+// setup routes API
+var giftRouter = require("./Routes/giftRouter")
+//app.use('/gift',giftRouter)
