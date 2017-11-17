@@ -5,5 +5,7 @@ var router = express.Router()
 
 router.route('/retrieveInventories/:id')
 	.get(controller.retrieveInventories)
+router.route('/setInventory')
+	.post(controller.setInventory)
 
 module.exports = router
