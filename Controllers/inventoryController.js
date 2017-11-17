@@ -11,7 +11,7 @@ var retrieveInventories = function(req,res){
     if (err) {
     	res.json({status:400,message:'Failed'});
     } else {
-    	res.json({status:200,message:'Get data success'});
+    	res.json({status:200,message:'Get data success',data:result});
     }
   });
 };
@@ -80,7 +80,7 @@ var setInventory = function(req,res){
     	if (err) {
     		res.json({status:400,message:'Failed', err: err});
 	    } else {
-	    	res.json({status:200,message:'Set data success',data:result});
+	    	res.json({status:200,message:'Set data success'});
 	    }
 	});
 }
