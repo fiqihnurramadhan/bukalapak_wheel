@@ -8,11 +8,12 @@ var retrieveGifts = function(req,res){
 	  console.log("Starting retrieve all data");
 	  var sql = "SELECT * FROM Gift";
 	  service.query(sql, function (err, result, field) {
-	    if (err) throw err;
-	    setTimeout(function()
-			{
-				res.json({status:200,message:'Get data success',data:result});				
-			},100);
+	    if (err) {
+	    	res.json({status:400,message:'Failed'});
+	    } else {
+	    	res.json({status:200,message:'Get data success',data:result});
+	    }
+	  	service.release()
 	  });
 	});	
 };

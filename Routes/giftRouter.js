@@ -10,7 +10,7 @@ var giftRouter=express.Router();
 
 // giftRouter.route('/retrieve/:resourceId')
 // 	.get(giftController.retrieveGift);
-giftRouter.route('/retrieveAll')
+giftRouter.route('/retrieveGifts')
 	.get(giftController.retrieveGifts);
 
 module.exports=giftRouter
