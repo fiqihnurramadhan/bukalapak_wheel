@@ -9,4 +9,7 @@ router.route('/checkVoucher')
 	.post(controller.checkVoucher)
 router.route('/useInventory')
 	.post(controller.useInventory)
+router.route('/setInventory')
+	.post(controller.setInventory)
+	
 module.exports = router
