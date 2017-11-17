@@ -8,8 +8,16 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
+// bypass option method
+  if('OPTIONS'==req.method) {
+	  res.send(200);
+  }else{
+	  next();
+  }
 })
-var portServer = 5000;
+
+var portServer = process.env.PORT || 2022
 app.listen(portServer, function () {
     console.log('Start server on port:' + portServer)
 })
