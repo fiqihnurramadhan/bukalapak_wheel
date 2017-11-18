@@ -8,7 +8,7 @@ var retrieveGifts = function(req,res){
 	if (req.params.price < 100000) {
 		priceRangeChecking = 1
 	}
-	else if (priceRangeChecking > 100000 && priceRangeChecking < 500000) {
+	else if (req.params.price >= 100000 && req.params.price < 500000) {
 		priceRangeChecking = 2
 	}
 	else {
