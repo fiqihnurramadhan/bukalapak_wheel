@@ -20,6 +20,7 @@ var retrieveGifts = function(req,res){
 	    if (err) {
 	    	res.json({status:400,message:'Failed', error: err});
 	    } else {
+	    	result.push(result[Math.floor(Math.random() * (result.length-1))])
 	    	res.json({status:200,message:'Get data success',data:result});
 	    }
 	});	
