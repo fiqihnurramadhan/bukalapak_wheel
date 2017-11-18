@@ -11,6 +11,11 @@ var retrieveInventories = function(req,res){
     if (err) {
     	res.json({status:400,message:'Failed'});
     } else {
+    	for (var i = 0; i < result.length; i++) {
+    		var monthFormat = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September" ,"Oktober","November","Desember"]
+			var customDate = new Date(result[i].expired)
+			result[i].expired = customDate.getDate() + " " + monthFormat[customDate.getMonth()] + " " + customDate.getFullYear()  	
+    	}
     	res.json({status:200,message:'Get data success',data:result});
     }
   });
@@ -74,9 +79,8 @@ var setInventory = function(req,res){
 	  	var gift_id = req.body.gift_id
 	  	var setDate = new Date();  
 		var expiredDate = setDate.getDate();  
-			setDate.setDate(expiredDate + 7);  	
-	  	var sql = "INSERT INTO Gift_Inventory (user_id, gift_id, expired) VALUES (?, ?, ?)";
-	  	
+			setDate.setDate(expiredDate + 7);
+		var sql = "INSERT INTO Gift_Inventory (user_id, gift_id, expired) VALUES (?, ?, ?)";
 	  	service.query(sql,[id,gift_id, setDate], function (err, result) {
 	    	if (err) {
 	    		res.json({status:400,message:'Failed', err: err});
