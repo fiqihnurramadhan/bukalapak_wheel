@@ -69,20 +69,26 @@ var useInventory = function(req,res){
 
 var setInventory = function(req,res){
 	console.log("Starting insert inventory for user_id"+ req.body.user_id );
-  	var id = req.body.user_id
-  	var gift_id = req.body.gift_id
-  	var setDate = new Date();  
-	var expiredDate = setDate.getDate();  
-		setDate.setDate(expiredDate + 7);  	
-  	var sql = "INSERT INTO Gift_Inventory (user_id, gift_id, expired) VALUES (?, ?, ?)";
-  	
-  	service.query(sql,[id,gift_id, setDate], function (err, result) {
-    	if (err) {
-    		res.json({status:400,message:'Failed', err: err});
-	    } else {
-	    	res.json({status:200,message:'Set data success'});
-	    }
-	});
+	if (req.body.user_id != null && req.body.gift_id != null) {
+	  	var id = req.body.user_id
+	  	var gift_id = req.body.gift_id
+	  	var setDate = new Date();  
+		var expiredDate = setDate.getDate();  
+			setDate.setDate(expiredDate + 7);  	
+	  	var sql = "INSERT INTO Gift_Inventory (user_id, gift_id, expired) VALUES (?, ?, ?)";
+	  	
+	  	service.query(sql,[id,gift_id, setDate], function (err, result) {
+	    	if (err) {
+	    		res.json({status:400,message:'Failed', err: err});
+		    } else {
+		    	res.json({status:200,message:'Set data success'});
+		    }
+		});	
+	}
+	else 
+	{
+		res.json({status:400,message:'Failed', err: "Please send user_id and gift_id in body"});
+	}
 }
 
 module.exports = {
