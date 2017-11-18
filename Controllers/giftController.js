@@ -3,12 +3,12 @@ var setupConnection	= require("./../setupConnection");
 var service = mysql.createConnection(setupConnection.setCon);
 
 var retrieveGifts = function(req,res){
-	console.log("Starting retrieve all data");
+	console.log("Starting retrieve all data wiht price: " + req.params.price);
 	var priceRangeChecking
 	if (req.params.price < 100000) {
 		priceRangeChecking = 1
 	}
-	else if (req.params.price >= 100000 && req.params.price < 500000) {
+	else if (req.params.price < 500000) {
 		priceRangeChecking = 2
 	}
 	else {
